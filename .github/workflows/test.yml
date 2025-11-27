@@ -1,0 +1,34 @@
+name: Run Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # - name: Simulate successful test run
+      #   run: |
+      #     echo "Test run successful!"
+      #     exit 0
+
+      # - name: Simulate failed test run
+      #   run: |
+      #     echo "Test run failed!"
+      #     exit 1
+
+      - name: Test
+        run: |
+          make test
