@@ -2,9 +2,9 @@ name: Benchmark
 
 on:
   workflow_run:
-    workflows: ["Run Tests"]
-    types:
-      - completed
+    workflows: [Run Tests]
+    # types:
+    #   - completed
 
 jobs:
   debug:
