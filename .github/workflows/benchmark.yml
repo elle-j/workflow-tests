@@ -3,8 +3,7 @@ name: Benchmark
 on:
   workflow_run:
     workflows: [Run Tests]
-    # types:
-    #   - completed
+    types: [completed]
 
 jobs:
   debug:
@@ -25,11 +24,6 @@ jobs:
     permissions:
       pull-requests: write
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.REPO_ACCESS_TOKEN }}
-
       - name: Set Up Rust Toolchain
         uses: actions-rust-lang/setup-rust-toolchain@v1
 
@@ -38,9 +32,10 @@ jobs:
           cargo install critcmp
 
       - name: Checkout Main Branch
-        run: |
-          git fetch origin main:main
-          git checkout -f main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
 
       - name: Run Benchmarks on Main Branch
         run: |
@@ -48,8 +43,10 @@ jobs:
         timeout-minutes: 10
 
       - name: Checkout PR Branch
-        run: |
-          git checkout -f ${{ github.sha }}
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
 
       - name: Run Benchmarks on PR Branch
         run: |
