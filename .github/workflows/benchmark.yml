@@ -6,18 +6,9 @@ on:
     types: [completed]
 
 jobs:
-  benchmark:
+  debug:
     runs-on: ubuntu-24.04
-    # TODO: Uncomment
-    # if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'pull_request' }}
-    permissions:
-      pull-requests: write
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.REPO_ACCESS_TOKEN }}
-
       - name: Debug Workflow Event
         env:
           EVENT_CONTEXT: ${{ toJson(github.event) }}
@@ -26,6 +17,17 @@ jobs:
           echo "Workflow run event: ${{ github.event.workflow_run.event }}"
           echo "Full Event Context:"
           echo "$EVENT_CONTEXT"
+
+  benchmark:
+    runs-on: ubuntu-24.04
+    if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'pull_request' }}
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
 
       - name: Set Up Rust Toolchain
         uses: actions-rust-lang/setup-rust-toolchain@v1
