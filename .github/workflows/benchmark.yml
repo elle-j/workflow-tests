@@ -55,7 +55,7 @@ jobs:
 
       - name: Compare Benchmarks
         run: |
-          critcmp main pr > benchmarks-fib
+          critcmp main-branch pr-branch > benchmarks-fib
 
       - name: Create Report
         run: |
