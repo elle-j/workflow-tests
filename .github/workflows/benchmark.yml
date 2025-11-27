@@ -39,7 +39,7 @@ jobs:
 
       - name: Run Benchmarks on Main Branch
         run: |
-          cargo bench --bench fibonacci -- --save-baseline main-branch
+          cargo bench --bench fibonacci -- --save-baseline main_branch
         timeout-minutes: 10
 
       - name: Checkout PR Branch
@@ -50,12 +50,12 @@ jobs:
 
       - name: Run Benchmarks on PR Branch
         run: |
-          cargo bench --bench fibonacci -- --save-baseline pr-branch
+          cargo bench --bench fibonacci -- --save-baseline pr_branch
         timeout-minutes: 10
 
       - name: Compare Benchmarks
         run: |
-          critcmp main-branch pr-branch > benchmarks-fib
+          critcmp main_branch pr_branch > benchmarks_fib
 
       - name: Create Report
         run: |
@@ -68,7 +68,7 @@ jobs:
               <summary>Details</summary>
 
           \`\`\`
-          $(cat benchmarks-fib)
+          $(cat benchmarks_fib)
           \`\`\`
 
           </details>
