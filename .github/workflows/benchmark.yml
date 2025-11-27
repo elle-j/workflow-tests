@@ -45,7 +45,7 @@ jobs:
       - name: Checkout PR Branch
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.sha }}
+          ref: ${{ github.event.workflow_run.head_sha }}
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
 
       - name: Run Benchmarks on PR Branch
