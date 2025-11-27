@@ -1,24 +1,14 @@
 name: Benchmark
 
 on:
-  # TODO: Uncomment
-  # workflow_run:
-  #   workflows: [Run Tests]
-  #   types: [completed]
-
-  # TODO: Remove (temporary trigger)
-  pull_request:
-    branches:
-      - main
-    types:
-      - opened
-      - synchronize
+  workflow_run:
+    workflows: [Run Tests]
+    types: [completed]
 
 jobs:
   benchmark:
     runs-on: ubuntu-24.04
-    # TODO: Uncomment
-    # if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'pull_request' }}
+    if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'pull_request' }}
     permissions:
       pull-requests: write
     steps:
@@ -41,7 +31,7 @@ jobs:
 
       - name: Run Benchmarks on Main Branch
         run: |
-          cargo bench --bench fibonacci -- --save-baseline main
+          cargo bench --bench fibonacci -- --save-baseline main-branch
         timeout-minutes: 10
 
       - name: Checkout PR Branch
@@ -50,7 +40,7 @@ jobs:
 
       - name: Run Benchmarks on PR Branch
         run: |
-          cargo bench --bench fibonacci -- --save-baseline pr
+          cargo bench --bench fibonacci -- --save-baseline pr-branch
         timeout-minutes: 10
 
       - name: Compare Benchmarks
@@ -78,8 +68,5 @@ jobs:
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           header: benchmark
-          # TODO: Uncomment
-          # number: ${{ github.event.workflow_run.pull_requests[0].number }}
-          # TODO: Remove (temporary)
-          number: 2
+          number: ${{ github.event.workflow_run.pull_requests[0].number }}
           path: BENCHMARK_REPORT.md
