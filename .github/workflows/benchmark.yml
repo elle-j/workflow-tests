@@ -36,8 +36,9 @@ jobs:
 
       - name: Checkout Main Branch
         run: |
-          git fetch origin "$GITHUB_DEFAULT_BRANCH":"$GITHUB_DEFAULT_BRANCH"
-          git checkout -f "$GITHUB_DEFAULT_BRANCH"
+          echo "Default branch: $GITHUB_DEFAULT_BRANCH"
+          git fetch origin main:main
+          git checkout -f main
 
       - name: Run Benchmarks on Main Branch
         run: |
