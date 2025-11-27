@@ -1,3 +1,5 @@
+# This workflow will run on the default branch when triggered by a `workflow_run` event.
+
 name: Benchmark
 
 on:
