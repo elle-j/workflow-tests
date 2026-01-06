@@ -1,0 +1,109 @@
+name: Manual Benchmark
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref_before:
+        description: "Branch, tag, or SHA before changes"
+        default: "main"
+        type: string
+        required: true
+      ref_after:
+        description: "Branch, tag, or SHA after changes"
+        type: string
+        required: true
+      pr_number:
+        description: "PR number (for posting the result as a comment)"
+        type: number
+        required: false
+
+# Cancels in-progress runs for runs comparing the same refs if the workflow is re-triggered.
+concurrency:
+  group: ${{ github.workflow }}-${{ inputs.ref_before }}-${{ inputs.ref_after }}
+  cancel-in-progress: true
+
+jobs:
+  debug:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Debug Workflow Event
+        env:
+          INPUT_CONTEXT: ${{ toJson(inputs) }}
+          EVENT_CONTEXT: ${{ toJson(github.event) }}
+        run: |
+          echo "GitHub SHA: ${{ github.sha }}"
+          echo "GitHub REF: ${{ github.ref }}"
+          echo "Full Input Context:"
+          echo "$INPUT_CONTEXT"
+          echo "Full Event Context:"
+          echo "$EVENT_CONTEXT"
+
+  benchmark:
+    runs-on: ubuntu-24.04
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Set Up Rust Toolchain
+        uses: actions-rust-lang/setup-rust-toolchain@v1
+
+      - name: Install Benchmarking Tools
+        run: |
+          cargo install critcmp
+
+      - name: Checkout Commit Before Changes
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref_before }}
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
+
+      - name: Run Benchmarks on Commit Before Changes
+        run: |
+          cargo bench --bench fibonacci -- --save-baseline before
+        timeout-minutes: 10
+
+      - name: Checkout Commit After Changes
+        run: |
+          git fetch origin ${{ inputs.ref_after }}
+          git checkout -f ${{ inputs.ref_after }}
+
+      - name: Run Benchmarks on Commit After Changes
+        run: |
+          cargo bench --bench fibonacci -- --save-baseline after
+        timeout-minutes: 10
+
+      - name: Compare Benchmarks
+        run: |
+          critcmp before after > benchmarks_fib
+
+      - name: Create Report
+        run: |
+          cat > BENCHMARK_REPORT.md << EOF
+          # Benchmarks
+
+          ## Fibonacci
+
+          <details>
+              <summary>Details</summary>
+
+          \`\`\`
+          $(cat benchmarks_fib)
+          \`\`\`
+
+          </details>
+          EOF
+
+      - name: Post PR Comment with Benchmark Results
+        if: ${{ inputs.pr_number }}
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: benchmark
+          number: ${{ inputs.pr_number }}
+          path: BENCHMARK_REPORT.md
+
+      - name: Upload Benchmark Results
+        if: ${{ !inputs.pr_number }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-report
+          path: BENCHMARK_REPORT.md
+          retention-days: 7
