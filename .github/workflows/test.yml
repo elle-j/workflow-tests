@@ -24,11 +24,11 @@ jobs:
       #     echo "Test run successful!"
       #     exit 0
 
-      - name: Simulate failed test run
-        run: |
-          echo "Test run failed!"
-          exit 1
-
-      # - name: Test
+      # - name: Simulate failed test run
       #   run: |
-      #     make test
+      #     echo "Test run failed!"
+      #     exit 1
+
+      - name: Test
+        run: |
+          make test
