@@ -7,6 +7,12 @@ on:
     workflows: [Run Tests]
     types: [completed]
 
+# Cancels in-progress runs for runs on the same branch as the PR if the workflow is
+# re-triggered (by e.g. another push to the PR and successful Test workflow run).
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.workflow_run.head_branch }}
+  cancel-in-progress: true
+
 jobs:
   debug:
     runs-on: ubuntu-24.04
