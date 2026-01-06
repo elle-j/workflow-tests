@@ -68,17 +68,23 @@ jobs:
 
       - name: Run Benchmarks on Commit After Changes
         run: |
-          cargo bench --bench fibonacci -- --save-baseline after
+          cargo bench --bench fibonacci -- --save-baseline changes
         timeout-minutes: 10
 
       - name: Compare Benchmarks
         run: |
-          critcmp before after > benchmarks_fib
+          critcmp before changes > benchmarks_fib
 
       - name: Create Report
+        env:
+          REF_BEFORE: ${{ inputs.ref_before }}
+          REF_AFTER: ${{ inputs.ref_after }}
         run: |
           cat > BENCHMARK_REPORT.md << EOF
           # Benchmarks
+
+          * **Ref Before:** \`$REF_BEFORE\`
+          * **Ref After:** \`$REF_AFTER\`
 
           ## Fibonacci
 
