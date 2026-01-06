@@ -68,12 +68,12 @@ jobs:
 
       - name: Run Benchmarks on Commit After Changes
         run: |
-          cargo bench --bench fibonacci -- --save-baseline change
+          cargo bench --bench fibonacci -- --save-baseline changes
         timeout-minutes: 10
 
       - name: Compare Benchmarks
         run: |
-          critcmp before change > benchmarks_fib
+          critcmp before changes > benchmarks_fib
 
       - name: Create Report
         env:
