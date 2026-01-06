@@ -83,8 +83,8 @@ jobs:
           cat > BENCHMARK_REPORT.md << EOF
           # Benchmarks
 
-          * **Ref Before:** `$REF_BEFORE`
-          * **Ref After:** `$REF_AFTER`
+          * **Ref Before:** \`$REF_BEFORE\`
+          * **Ref After:** \`$REF_AFTER\`
 
           ## Fibonacci
 
