@@ -6,7 +6,7 @@
     <summary>See info</summary>
 
 ```json
-{% raw %}{% include_relative gh-pages-data/dir1/data.json %}{% endraw %}
+{% include_relative gh-pages-data/dir1/data.json %}
 ```
 
 </details>
@@ -19,7 +19,7 @@
     <summary>See info</summary>
 
 ```json
-{% raw %}{% include_relative gh-pages-data/dir2/dir2a/data.json %}{% endraw %}
+{% include_relative gh-pages-data/dir2/dir2a/data.json %}
 ```
 
 </details>
@@ -30,7 +30,7 @@
     <summary>See info</summary>
 
 ```json
-{% raw %}{% include_relative gh-pages-data/dir2/dir2b/data.json %}{% endraw %}
+{% include_relative gh-pages-data/dir2/dir2b/data.json %}
 ```
 
 </details>
