@@ -82,7 +82,7 @@ title: GitHub Pages Test Page
 <details>
     <summary>See info</summary>
 
-```json
+{% highlight json %}
 {
   "field1": [
     {
@@ -100,6 +100,26 @@ title: GitHub Pages Test Page
   },
   "field3": "some-data"
 }
-```
+{% endhighlight %}
 
 </details>
+
+{% highlight json %}
+{
+  "field1": [
+    {
+      "field1a": "some-data",
+      "field1b": "some-data"
+    },
+    {
+      "field1a": "some-data",
+      "field1b": "some-data"
+    }
+  ],
+  "field2": {
+    "field2a": "some-data",
+    "field2b": "some-data"
+  },
+  "field3": "some-data"
+}
+{% endhighlight %}
