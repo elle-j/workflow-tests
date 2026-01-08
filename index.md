@@ -6,7 +6,23 @@
     <summary>See info</summary>
 
 ```json
-{% include_relative gh-pages-data/dir1/data.json %}
+{
+  "field1": [
+    {
+      "field1a": "some-data",
+      "field1b": "some-data"
+    },
+    {
+      "field1a": "some-data",
+      "field1b": "some-data"
+    }
+  ],
+  "field2": {
+    "field2a": "some-data",
+    "field2b": "some-data"
+  },
+  "field3": "some-data"
+}
 ```
 
 </details>
@@ -19,7 +35,23 @@
     <summary>See info</summary>
 
 ```json
-{% include_relative gh-pages-data/dir2/dir2a/data.json %}
+{
+  "field1": [
+    {
+      "field1a": "some-data",
+      "field1b": "some-data"
+    },
+    {
+      "field1a": "some-data",
+      "field1b": "some-data"
+    }
+  ],
+  "field2": {
+    "field2a": "some-data",
+    "field2b": "some-data"
+  },
+  "field3": "some-data"
+}
 ```
 
 </details>
@@ -30,7 +62,23 @@
     <summary>See info</summary>
 
 ```json
-{% include_relative gh-pages-data/dir2/dir2b/data.json %}
+{
+  "field1": [
+    {
+      "field1a": "some-data",
+      "field1b": "some-data"
+    },
+    {
+      "field1a": "some-data",
+      "field1b": "some-data"
+    }
+  ],
+  "field2": {
+    "field2a": "some-data",
+    "field2b": "some-data"
+  },
+  "field3": "some-data"
+}
 ```
 
 </details>
