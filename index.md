@@ -82,3 +82,40 @@
 ```
 
 </details>
+
+## Test Markdown processor
+
+```json
+{
+  "field": "some-data"
+}
+```
+
+~~~json
+{
+  "field": "some-data"
+}
+~~~
+
+<details>
+    <summary>See info</summary>
+
+~~~json
+{
+  "field": "some-data"
+}
+~~~
+
+~~~
+{
+  "field": "some-data"
+}
+~~~
+
+```
+{
+  "field": "some-data"
+}
+```
+
+</details>
