@@ -1,6 +1,0 @@
-# Jekyll configuration file for site settings and options
-# such as the Markdown processor.
-
-markdown: kramdown
-kramdown:
-  syntax_highlighter: rouge

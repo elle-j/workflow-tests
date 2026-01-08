@@ -26,42 +26,36 @@ done
 echo "Updating GitHub Pages index.md file..."
 
 cat > "$GH_PAGES_ROOT_DIR/index.md" << EOF
+---
+title: GitHub Pages Test Page
+---
+
 # GitHub Pages Test Page
+{:.no_toc}
+
+## Data
+* TOC
+{:toc}
 
 ## Dir1
-
-<details>
-    <summary>See info</summary>
 
 \`\`\`json
 $(cat $dir1_data)
 \`\`\`
 
-</details>
-
 ## Dir2
 
 ### Dir2a
-
-<details>
-    <summary>See info</summary>
 
 \`\`\`json
 $(cat $dir2a_data)
 \`\`\`
 
-</details>
-
 ### Dir2b
-
-<details>
-    <summary>See info</summary>
 
 \`\`\`json
 $(cat $dir2b_data)
 \`\`\`
-
-</details>
 EOF
 
 echo "File has been updated!"
