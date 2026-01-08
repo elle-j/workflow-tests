@@ -4,8 +4,6 @@ title: GitHub Pages Test Page
 
 # GitHub Pages Test Page
 
-## Data
-
 ## Dir1
 
 <details>
@@ -30,6 +28,8 @@ title: GitHub Pages Test Page
   "field3": "some-data"
 }
 {% endhighlight %}
+
+</details>
 
 ## Dir2
 
@@ -58,6 +58,8 @@ title: GitHub Pages Test Page
 }
 {% endhighlight %}
 
+</details>
+
 ### Dir2b
 
 <details>
@@ -82,3 +84,5 @@ title: GitHub Pages Test Page
   "field3": "some-data"
 }
 {% endhighlight %}
+
+</details>
