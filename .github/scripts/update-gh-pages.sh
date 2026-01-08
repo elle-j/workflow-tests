@@ -31,31 +31,41 @@ title: GitHub Pages Test Page
 ---
 
 # GitHub Pages Test Page
-{:.no_toc}
-
-## Data
-* TOC
-{:toc}
 
 ## Dir1
 
-\`\`\`json
+<details>
+    <summary>See info</summary>
+
+{% highlight json %}
 $(cat $dir1_data)
-\`\`\`
+{% endhighlight %}
+
+</details>
 
 ## Dir2
 
 ### Dir2a
 
-\`\`\`json
+<details>
+    <summary>See info</summary>
+
+{% highlight json %}
 $(cat $dir2a_data)
-\`\`\`
+{% endhighlight %}
+
+</details>
 
 ### Dir2b
 
-\`\`\`json
+<details>
+    <summary>See info</summary>
+
+{% highlight json %}
 $(cat $dir2b_data)
-\`\`\`
+{% endhighlight %}
+
+</details>
 EOF
 
 echo "File has been updated!"
