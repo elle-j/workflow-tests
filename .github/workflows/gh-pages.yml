@@ -1,0 +1,26 @@
+name: GitHub Pages
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update-gh-pages:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.REPO_WRITE_TOKEN }}
+
+      - name: Update GitHub Pages
+        run: |
+          export GH_PAGES_ROOT_DIR=$PWD
+          chmod +x .github/scripts/update-gh-pages.sh
+          bash .github/scripts/update-gh-pages.sh
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          git add .
+          git commit -m "Update GitHub Pages."
+          git push
