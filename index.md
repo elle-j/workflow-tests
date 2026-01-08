@@ -1,9 +1,8 @@
 # GitHub Pages Test Page
 
-## Dir1
+{:toc}
 
-<details>
-    <summary>See info</summary>
+## Dir1
 
 ```json
 {
@@ -24,16 +23,11 @@
   "field3": "some-data"
 }
 ```
-
-</details>
 
 ## Dir2
 
 ### Dir2a
 
-<details>
-    <summary>See info</summary>
-
 ```json
 {
   "field1": [
@@ -53,14 +47,9 @@
   "field3": "some-data"
 }
 ```
-
-</details>
 
 ### Dir2b
 
-<details>
-    <summary>See info</summary>
-
 ```json
 {
   "field1": [
@@ -80,42 +69,3 @@
   "field3": "some-data"
 }
 ```
-
-</details>
-
-## Test Markdown processor
-
-```json
-{
-  "field": "some-data"
-}
-```
-
-~~~json
-{
-  "field": "some-data"
-}
-~~~
-
-<details>
-    <summary>See info</summary>
-
-~~~json
-{
-  "field": "some-data"
-}
-~~~
-
-~~~
-{
-  "field": "some-data"
-}
-~~~
-
-```
-{
-  "field": "some-data"
-}
-```
-
-</details>
