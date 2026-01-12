@@ -1,17 +1,19 @@
 {
-  "field1": [
+  "builds": [
     {
-      "field1a": "some-data",
-      "field1b": "some-data"
+      "name": "name1",
+      "version": "0.1.0",
+      "build": "commit1"
     },
     {
-      "field1a": "some-data",
-      "field1b": "some-data"
+      "name": "name2",
+      "version": "0.2.0",
+      "build": "commit2"
     }
   ],
-  "field2": {
-    "field2a": "some-data",
-    "field2b": "some-data"
+  "releases": {
+    "0.1.0": "release1",
+    "0.2.0": "release2"
   },
-  "field3": "some-data"
+  "latestRelease": "0.2.0"
 }

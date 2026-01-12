@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # This script updates `index.md` in the directory provided by the required
-# `GH_PAGES_ROOT_DIR` environment variable. The file will be updated
-# with the JSON data in `gh-pages-data`. `index.md` is the file served
-# by GitHub Pages after being processed by Jekyll.
+# `GH_PAGES_ROOT_DIR` environment variable. The file will be updated with
+# the JSON data in `gh-pages-data`. `index.md` is the file served by
+# GitHub Pages after being built by Jekyll and the Markdown processed by kramdown.
 
 if [ -z "$GH_PAGES_ROOT_DIR" ]; then
     echo "Error: GH_PAGES_ROOT_DIR environment variable is not set."
@@ -23,6 +23,22 @@ for file in "${data_files[@]}"; do
     fi
 done
 
+# Sort the data by version in descending order.
+sort_by_version_descending() {
+    local data_file="$1"
+    if [ -z "$data_file" ]; then
+        echo "Error: A data file argument is required for sorting"
+        return 1
+    fi
+
+    # Load the data and sort builds and releases with the latest version first.
+    data=$(jq '.' "$data_file")
+    sorted_data=$(echo "$data" | jq '.builds = (.builds | sort_by(.version) | reverse) |
+                                     .releases = (.releases | to_entries | sort_by(.key) | reverse | from_entries)')
+
+    echo "$sorted_data"
+}
+
 echo "Updating GitHub Pages index.md file..."
 
 cat > "$GH_PAGES_ROOT_DIR/index.md" << EOF
@@ -40,7 +56,7 @@ Details are shown here. The information is synced with the [workflow-tests GitHu
     <summary>See info</summary>
 
 {% highlight json %}
-$(cat $dir1_data)
+$(sort_by_version_descending $dir1_data)
 {% endhighlight %}
 
 </details>
@@ -53,7 +69,7 @@ $(cat $dir1_data)
     <summary>See info</summary>
 
 {% highlight json %}
-$(cat $dir2a_data)
+$(sort_by_version_descending $dir2a_data)
 {% endhighlight %}
 
 </details>
@@ -64,7 +80,7 @@ $(cat $dir2a_data)
     <summary>See info</summary>
 
 {% highlight json %}
-$(cat $dir2b_data)
+$(sort_by_version_descending $dir2b_data)
 {% endhighlight %}
 
 </details>
