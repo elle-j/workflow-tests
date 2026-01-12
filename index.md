@@ -13,21 +13,23 @@ Details are shown here. The information is synced with the [workflow-tests GitHu
 
 {% highlight json %}
 {
-  "field1": [
+  "builds": [
     {
-      "field1a": "some-data",
-      "field1b": "some-data"
+      "name": "name2",
+      "version": "0.2.0",
+      "build": "commit2"
     },
     {
-      "field1a": "some-data",
-      "field1b": "some-data"
+      "name": "name1",
+      "version": "0.1.0",
+      "build": "commit1"
     }
   ],
-  "field2": {
-    "field2a": "some-data",
-    "field2b": "some-data"
+  "releases": {
+    "0.2.0": "release2",
+    "0.1.0": "release1"
   },
-  "field3": "some-data"
+  "latestRelease": "0.2.0"
 }
 {% endhighlight %}
 
@@ -42,21 +44,23 @@ Details are shown here. The information is synced with the [workflow-tests GitHu
 
 {% highlight json %}
 {
-  "field1": [
+  "builds": [
     {
-      "field1a": "some-data",
-      "field1b": "some-data"
+      "name": "name2",
+      "version": "0.2.0",
+      "build": "commit2"
     },
     {
-      "field1a": "some-data",
-      "field1b": "some-data"
+      "name": "name1",
+      "version": "0.1.0",
+      "build": "commit1"
     }
   ],
-  "field2": {
-    "field2a": "some-data",
-    "field2b": "some-data"
+  "releases": {
+    "0.2.0": "release2",
+    "0.1.0": "release1"
   },
-  "field3": "some-data"
+  "latestRelease": "0.2.0"
 }
 {% endhighlight %}
 
@@ -69,21 +73,23 @@ Details are shown here. The information is synced with the [workflow-tests GitHu
 
 {% highlight json %}
 {
-  "field1": [
+  "builds": [
     {
-      "field1a": "some-data",
-      "field1b": "some-data"
+      "name": "name2",
+      "version": "0.2.0",
+      "build": "commit2"
     },
     {
-      "field1a": "some-data",
-      "field1b": "some-data"
+      "name": "name1",
+      "version": "0.1.0",
+      "build": "commit1"
     }
   ],
-  "field2": {
-    "field2a": "some-data",
-    "field2b": "some-data"
+  "releases": {
+    "0.2.0": "release2",
+    "0.1.0": "release1"
   },
-  "field3": "some-data"
+  "latestRelease": "0.2.0"
 }
 {% endhighlight %}
 
