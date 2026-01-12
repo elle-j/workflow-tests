@@ -1,18 +1,20 @@
 #!/bin/bash
 
-# This script updates `index.md` in the directory provided by the required
-# `GH_PAGES_ROOT_DIR` environment variable. The file will be updated with
+# This script updates `index.md` in the GitHub Pages root directory provided
+# by the required argument to be passed. The file will be updated with
 # the JSON data in `gh-pages-data`. `index.md` is the file served by
 # GitHub Pages after being built by Jekyll and the Markdown processed by kramdown.
 
-if [ -z "$GH_PAGES_ROOT_DIR" ]; then
-    echo "Error: GH_PAGES_ROOT_DIR environment variable is not set."
-    exit 1
+if [ $# -eq 0 ]; then
+  echo "Error: The path to the GitHub Pages root directory must be passed"
+  exit 1
 fi
 
-dir1_data="$GH_PAGES_ROOT_DIR/gh-pages-data/dir1/data.json"
-dir2a_data="$GH_PAGES_ROOT_DIR/gh-pages-data/dir2/dir2a/data.json"
-dir2b_data="$GH_PAGES_ROOT_DIR/gh-pages-data/dir2/dir2b/data.json"
+gh_pages_root_dir="$1"
+
+dir1_data="$gh_pages_root_dir/gh-pages-data/dir1/data.json"
+dir2a_data="$gh_pages_root_dir/gh-pages-data/dir2/dir2a/data.json"
+dir2b_data="$gh_pages_root_dir/gh-pages-data/dir2/dir2b/data.json"
 
 data_files=("$dir1_data" "$dir2a_data" "$dir2b_data")
 
@@ -41,7 +43,7 @@ sort_by_version_descending() {
 
 echo "Updating GitHub Pages index.md file..."
 
-cat > "$GH_PAGES_ROOT_DIR/index.md" << EOF
+cat > "$gh_pages_root_dir/index.md" << EOF
 ---
 title: GitHub Pages Test Page
 ---

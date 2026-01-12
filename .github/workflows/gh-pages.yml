@@ -16,9 +16,8 @@ jobs:
 
       - name: Update GitHub Pages
         run: |
-          export GH_PAGES_ROOT_DIR=$PWD
           chmod +x .github/scripts/update-gh-pages.sh
-          bash .github/scripts/update-gh-pages.sh
+          bash .github/scripts/update-gh-pages.sh $PWD
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"
           git add .
