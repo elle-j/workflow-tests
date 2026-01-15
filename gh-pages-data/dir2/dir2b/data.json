@@ -3,12 +3,22 @@
     {
       "name": "name1",
       "version": "0.1.0",
-      "build": "commit1"
+      "longVersion": "0.1.0+commit.11111111",
+      "build": "commit1",
+      "url": "https://elle-j.github.io/workflow-tests",
+      "depFirstSupportedVersion": "0.5.0",
+      "depLastSupportedVersion": "0.9.0",
+      "sha256": "3ff092190515840c056e2e2371da65b7a4953a83"
     },
     {
       "name": "name2",
       "version": "0.2.0",
-      "build": "commit2"
+      "longVersion": "0.2.0+commit.22222222",
+      "build": "commit2",
+      "url": "https://elle-j.github.io/workflow-tests",
+      "depFirstSupportedVersion": "0.5.0",
+      "depLastSupportedVersion": "0.9.0",
+      "sha256": "3ff092190515840c056e2e2371da65b7a4953a83"
     }
   ],
   "releases": {
