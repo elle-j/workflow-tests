@@ -7,7 +7,6 @@ title: GitHub Pages Test Page
 
 Details are shown here. The information is synced with the [workflow-tests GitHub repository](https://github.com/elle-j/workflow-tests).
 
-## Contents
 * TOC
 {:toc}
 
